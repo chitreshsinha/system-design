@@ -29,6 +29,15 @@ class HashMap:
 
 		raise KeyError("Key not present")
 
+	def remove(self, key):
+		hash = self._hashfunction(key)
+		for i, x in enumerate(self.table[hash]):
+			if(x.key == key):
+				del self.table[hash][i]
+				return 
+		raise KeyError("Key not found")
+
+
 ## TESTING
 h = HashMap(10)
 print h
@@ -37,8 +46,11 @@ print h.table
 #print h.get(4)
 print h.set(4, "four")
 print h.get(4)
-print h.set(14, "four-4")
+print h.set(14, "fourteen")
 print h.get(14)
+print h.set(4, "four-4")
+print h.get(4)
+print h.remove(4)
 print h.size
 print h.table
 
